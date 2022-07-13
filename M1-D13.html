@@ -80,10 +80,10 @@ The user should be able to see the list of tasks, add new ones, delete existing 
                 - Use the document.createElement to create the new List Item
                 - Append the LI child to the UL
             */
+           const taskList = document.getElementById("myTaskList");
       const addNewTask = function (){
-        const taskList = document.getElementById("myTaskList");
         const inputfield = document.getElementById("newTask");
-        console.log(inputfield.value)
+        //console.log(inputfield.value)
         const newPost = document.createElement("li")
         newPost.innerText = inputfield.value
         newPost.classList.add("listItem");
@@ -93,8 +93,7 @@ The user should be able to see the list of tasks, add new ones, delete existing 
       /* EXERCISE 6: 
                 Create a method "removeLast" which removes the last item from the task list
             */
-      const removeLast = function(){
-        const taskList = document.getElementById("myTaskList");
+      const removeLast = function(){        
         const listItems = taskList.getElementsByTagName("li");
         taskList.removeChild(listItems[listItems.length-1]);
       }
@@ -102,8 +101,7 @@ The user should be able to see the list of tasks, add new ones, delete existing 
       /* EXERCISE 7: 
                 Create a method "removeFirst" which removes the first item from the task list
             */
-        const removeFirst = function(){
-        const taskList = document.getElementById("myTaskList");        
+        const removeFirst = function(){              
         taskList.removeChild(taskList.firstChild);
       }
       /* EXERCISE 8: 
@@ -121,14 +119,15 @@ The user should be able to see the list of tasks, add new ones, delete existing 
                Create a method "changeTaskBackgroundColor" which takes the color from the color picker with an 
                onchange event listener ad applies it as background to every list item
             */
-      const changeTaskBackgroundColor = function(){
-        const color = document.getElementById("colorPicker").value;
+        const colorPicker = document.getElementById("colorPicker");        
+      colorPicker.onchange = function changeTaskBackgroundColor(e) {
+        const color = colorPicker.value;
         const listItems = document.getElementById("myTaskList").getElementsByTagName("li");
         for(let i=0; i<listItems.length; i++){          
-          listItems[i].style.backgroundColor = color;
+          listItems[i].style.backgroundColor = e.target.value;
         }
-      }
-      document.getElementById("colorPicker").onchange = changeTaskBackgroundColor();
+      }      
+       
 
       /* EXTRA */
 
@@ -144,10 +143,24 @@ The user should be able to see the list of tasks, add new ones, delete existing 
 
     const bubbleSort = function(){
       const listItems = document.getElementById("myTaskList").getElementsByTagName("li");
-      for(let i=0; i<listItems.length; i++){          
-          if(listItems[i+1]<listItems[i]){
-            //swap items
+      let isDone = false;
+      do{
+        isDone = true;
+        
+        for(let i=0; i<listItems.length-1; i++){          
+          if(listItems[i+1].innerText<listItems[i].innerText){
+            let spotTwo = listItems[i+1].innerText;            
+            let spotOne = listItems[i].innerText;            
+            let holder = spotOne;
+            listItems[i].innerText= listItems[i+1].innerText;
+            listItems[i+1].innerText = holder;
+            isDone = false;           
+
           }
+        }      
+      }while(isDone = false);
+      for(let i=0; i<listItems.length-1; i++){          
+          if(listItems[i+1].innerText<listItems[i].innerText){bubbleSort()}
         }
     }
     </script>
