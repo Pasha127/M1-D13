@@ -143,11 +143,7 @@ The user should be able to see the list of tasks, add new ones, delete existing 
             */
 
     const bubbleSort = function(){
-      const listItems = document.getElementById("myTaskList").getElementsByTagName("li");
-      let isDone = false;
-      do{
-        isDone = true;
-        
+      const listItems = document.getElementById("myTaskList").getElementsByTagName("li");      
         for(let i=0; i<listItems.length-1; i++){          
           if(listItems[i+1].innerText<listItems[i].innerText){
             let spotTwo = listItems[i+1].innerText;            
@@ -155,11 +151,8 @@ The user should be able to see the list of tasks, add new ones, delete existing 
             let holder = spotOne;
             listItems[i].innerText= listItems[i+1].innerText;
             listItems[i+1].innerText = holder;
-            isDone = false;           
-
           }
-        }      
-      }while(isDone = false);
+        } 
       for(let i=0; i<listItems.length-1; i++){          
           if(listItems[i+1].innerText<listItems[i].innerText){bubbleSort()}
         }
